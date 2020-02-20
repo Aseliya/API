@@ -1,7 +1,6 @@
 module Api
   module V1
     class NewsController < ApplicationController
-      # before_action :authenticate_user!, only: [:edit, :update, :new]
       before_action :set_news, only: [:show, :edit, :update, :destroy]
 
       def index
