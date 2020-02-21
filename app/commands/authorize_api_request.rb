@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AuthorizeApiRequest
   prepend SimpleCommand
-  
+
   def initialize(headers = {})
     @headers = headers
   end
@@ -9,13 +11,13 @@ class AuthorizeApiRequest
     user
   end
 
-private
+  private
 
-attr_reader :headers
+  attr_reader :headers
 
   def user
     @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
-    @user || errors.add(:token, 'Invalid token') && nil
+    @user || errors.add(:token, "Invalid token") && nil
   end
 
   def decoded_auth_token
@@ -23,11 +25,12 @@ attr_reader :headers
   end
 
   def http_auth_header
-    if headers['Authorization'].present?
-      return headers['Authorization'].split(' ').last
+    if headers["Authorization"].present?
+      return headers["Authorization"].split(" ").last
     else
-      errors.add(:token, 'Missing token')
+      errors.add(:token, "Missing token")
     end
+
     nil
   end
 end

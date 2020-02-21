@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class NewsController < ApplicationController
-      before_action :set_news, only: [:show, :edit, :update, :destroy]
+      before_action :set_news, only: %i[show update destroy]
 
       def index
         @news = News.all
@@ -14,7 +16,9 @@ module Api
         render json: @news
       end
 
-      def edit;end
+      def edit
+        @news = current_user.news.find(:id)
+      end
 
       def show
         @news = News.find(params[:id])
@@ -26,14 +30,14 @@ module Api
         if @news.save
           redirect_to news_path(@news)
         else
-          render 'new'
+          render "new"
         end
       end
 
       def update
         respond_to do |format|
           if @news.update(news_params)
-            format.html { redirect_to @news, notice: 'News was successfully updated.' }
+            format.html { redirect_to @news, notice: "News was successfully updated." }
             format.json { render :show, status: :ok, location: @news }
           else
             format.html { render :edit }
@@ -44,7 +48,7 @@ module Api
 
       def destroy
         @news.destroy
-        redirect_to @news, notice: 'News was successfully destroyed.'
+        redirect_to @news, notice: "News was successfully destroyed."
       end
 
       private
@@ -54,7 +58,7 @@ module Api
       end
 
       def news_params
-          params.require(:news).permit(:headline, :user_id, :announcement, :text, :publication)
+        params.require(:news).permit(:headline, :user_id, :announcement, :text, :publication)
       end
     end
   end
