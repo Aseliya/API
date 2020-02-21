@@ -4,13 +4,14 @@ module Api
       before_action :set_news, only: [:show, :edit, :update, :destroy]
 
       def index
-        @news = News.order('created_at DESC')
-        # @user = current_user
+        @news = News.all
+        render json: @news
       end
 
       def new
         @news = News.new
         @user = current_user
+        render json: @news
       end
 
       def edit;end
