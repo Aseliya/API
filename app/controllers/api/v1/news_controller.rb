@@ -58,7 +58,13 @@ module Api
       end
 
       def news_params
-        params.require(:news).permit(:headline, :user_id, :announcement, :text, :publication)
+        params.require(:news).permit(
+          :headline,
+          :user_id,
+          :announcement,
+          :text,
+          :publication
+        )
       end
     end
   end
