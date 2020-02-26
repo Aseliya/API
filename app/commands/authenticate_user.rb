@@ -19,6 +19,7 @@ class AuthenticateUser
   def user
     user = User.find_by_email(email)
     return user if user&.authenticate(password)
+
     raise AuthenticationError, "invalid credentials"
     nil
   end
