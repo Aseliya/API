@@ -12,14 +12,13 @@ RSpec.describe AuthenticateUser do
         token = valid_auth_obj.call
         expect(token).not_to be_nil
       end
-
+    end
     context 'when invalid credentials' do
       it 'raises an authentication error' do
         expect { invalid_auth_obj.call }.to raise_error(
           AuthenticationError, /invalid credentials/
         )
       end
-    end
     end
   end
 end
