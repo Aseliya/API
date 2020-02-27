@@ -6,7 +6,8 @@ module Api
       before_action :set_news, only: %i[show update destroy]
 
       def index
-        @news = News.all
+        @user = User.find(params[:user_id])
+        @news = News.where(user_id: @user.id)
         render json: @news
       end
 
