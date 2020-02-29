@@ -32,13 +32,12 @@ RSpec.describe "Authentication", type: :request do
     # context "When request is invalid" do
     #   before { post "/authenticate", params: invalid_credentials, headers: headers }
 
-    #   it "returns a failure message" do
-    #     expect {
-    #       post :authenticate, format: "json"
-    #     }.to raise_error(
-    #       AuthenticationError, /invalid credentials/
-    #     )
-    #   end
+      # it "returns a failure message" do
+      #   expect(json['message']).to match(/invalid credentials/)
+      #   # raise_error(
+      #   #   AuthenticationError, /invalid credentials/
+      #   # )
+      # end
     # end
   end
 end
