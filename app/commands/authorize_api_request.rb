@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AuthorizeApiRequest
+  prepend SimpleCommand
+
   def initialize(headers = {})
     @headers = headers
   end

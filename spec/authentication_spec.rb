@@ -27,8 +27,8 @@ RSpec.describe "Authentication", type: :request do
         expect(json["auth_token"]).not_to be_nil
       end
     end
-        ## need to fix
-        
+    ## need to fix
+
     # context "When request is invalid" do
     #   before { post "/authenticate", params: invalid_credentials, headers: headers }
 
