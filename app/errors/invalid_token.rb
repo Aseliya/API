@@ -1,0 +1,1 @@
+class InvalidToken < StandardError; end

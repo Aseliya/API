@@ -27,17 +27,14 @@ RSpec.describe "Authentication", type: :request do
         expect(json["auth_token"]).not_to be_nil
       end
     end
-    ## need to fix
 
-    # context "When request is invalid" do
-    #   before { post "/authenticate", params: invalid_credentials, headers: headers }
+    context "When request is invalid" do
 
-      # it "returns a failure message" do
-      #   expect(json['message']).to match(/invalid credentials/)
-      #   # raise_error(
-      #   #   AuthenticationError, /invalid credentials/
-      #   # )
-      # end
-    # end
+      it "returns a failure message" do
+        expect {
+          post "/authenticate", params: invalid_credentials, headers: headers 
+        }.to raise_error AuthenticationError, /invalid credentials/
+      end
+    end
   end
 end
