@@ -29,11 +29,10 @@ RSpec.describe "Authentication", type: :request do
     end
 
     context "When request is invalid" do
-
       it "returns a failure message" do
         expect {
-          post "/authenticate", params: invalid_credentials, headers: headers 
-        }.to raise_error AuthenticationError, /invalid credentials/
+          post "/authenticate", params: invalid_credentials, headers: headers
+        }.to raise_error(AuthenticationError, /invalid credentials/)
       end
     end
   end

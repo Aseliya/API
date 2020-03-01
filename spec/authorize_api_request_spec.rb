@@ -30,7 +30,7 @@ RSpec.describe AuthorizeApiRequest do
         end
         it "raises an InvalidToken error" do
           expect { invalid_request_obj.call }
-            .to raise_error InvalidToken, /Invalid token/
+            .to raise_error(InvalidToken, /Invalid token/)
         end
       end
 
@@ -40,9 +40,7 @@ RSpec.describe AuthorizeApiRequest do
 
         it "raises ExpiredSignature error" do
           expect { request_obj.call }
-            .to raise_error(
-              InvalidToken, /Invalid token/
-            )
+            .to raise_error(InvalidToken, /Invalid token/)
         end
       end
 
@@ -50,11 +48,9 @@ RSpec.describe AuthorizeApiRequest do
         let(:header) { { "Authorization" => "foobar" } }
         subject(:invalid_request_obj) { described_class.new(header) }
 
-        it "handles JWT::DecodeError" do
+        it "raises an InvalidToken error" do
           expect { invalid_request_obj.call }
-            .to raise_error(
-              InvalidToken, /Invalid token/
-            )
+            .to raise_error(InvalidToken, /Invalid token/)
         end
       end
     end
